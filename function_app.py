@@ -5,7 +5,6 @@ import io import BytesIO
 
 app = func.FunctionApp()
 
-#@app.blob_output(arg_name="outputblob", path="thumbnails/", connection="")
 @app.blob_output(arg_name="outputblob", path="thumbnails/{name}_thumbnail.png", connection="")  # the suffix of path defines the file type and must match the input
 @app.blob_trigger(arg_name="myblob", path="uploads/{name}", connection="")
 def createThumbnail(myblob: func.InputStream, outputblob: func.Out[func.InputStream]):
